@@ -1,6 +1,6 @@
 //Global Variables
-var painted;
-var content;
+var X;
+var O;
 var winningCombinations;
 var turn = 0;
 var theCanvas;
@@ -14,13 +14,13 @@ var y;
 //Instantiate Arrays
 window.onload = function(){
 
-  painted = [];
-  content = [];
+  X = [];
+  O = [];
   winningCombinations = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
     for (var i = 0; i<= 8; i++)
-      painted [i] = false;
-      content [i] = '';
+      X [i] = false;
+      O [i] = '';
 }
 
 //Game Methods
@@ -29,8 +29,8 @@ var canvasClicked = function(canvasNumber) {
     c = document.getElementById(theCanvas);
     cxt = c.getContext("2d");
 
-    if(painted[canvasNumber-1] ==false){
-        if(turn%2==0){
+    if(X[canvasNumber-1] ===false){
+        if(turn%2===0){
             cxt.beginPath();
             cxt.moveTo(10,10);
             cxt.lineTo(40,40);
@@ -38,7 +38,7 @@ var canvasClicked = function(canvasNumber) {
             cxt.lineTo(10,40);
             cxt.stroke();
             cxt.closePath();
-            content[canvasNumber-1] = 'X';
+            O[canvasNumber-1] = 'X';
         }
 
         else{
@@ -46,15 +46,15 @@ var canvasClicked = function(canvasNumber) {
             cxt.arc(25,25,20,0,Math.PI*2,true);
             cxt.stroke();
             cxt.closePath();
-            content[canvasNumber-1] = 'O';
+            O[canvasNumber-1] = 'O';
         }
 
         turn++;
-        painted[canvasNumber-1] = true;
+        X[canvasNumber-1] = true;
         squaresFilled++;
-        checkForWinners(content[canvasNumber-1]);
+        checkForWinners(O[canvasNumber-1]);
 
-        if(squaresFilled==9){
+        if(squaresFilled===9){
             alert("THE GAME IS OVER!");
             location.reload(true);
         }
@@ -69,7 +69,7 @@ var canvasClicked = function(canvasNumber) {
 function checkForWinners(symbol){
 
     for(var a = 0; a < winningCombinations.length; a++){
-    if(content[winningCombinations[a][0]]==symbol&&content[winningCombinations[a][1]]== symbol&&content[winningCombinations[a][2]]==symbol){
+    if(O[winningCombinations[a][0]]===symbol&&O[winningCombinations[a][1]]=== symbol&&O[winningCombinations[a][2]]===symbol){
         alert(symbol+ " WON!");
         playAgain();
         }
@@ -78,12 +78,11 @@ function checkForWinners(symbol){
 }
 function playAgain(){
     y=confirm("PLAY AGAIN?");
-    if(y==true){
-        alert("OKAY!");
+
+    if(y===true){
         location.reload(true);
     }
     else{
         alert("SO LONG,SUCKER!");
         }
     }
-
