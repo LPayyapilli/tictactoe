@@ -1,4 +1,43 @@
 //Simple CSS
+#messagesDiv {
+  height: 600px;
+  width: 200px;
+  float: left;
+}
+table.board {
+  border: 1px solid green;
+  width: 100%;
+}
+body {
+  text-align: center;
+  align: center;
+  background-color: #CCFFCC;
+}
 
+td {
+  height: 200px;
+  width: 600px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 100px;
+  font-weight: bold;
+  font-color: green;
+  font-family: geniva, verdana, helvetica;
+  border: 1px solid green;
+}
 
+#menu {
+  font-size: 20px;
+  text-align: center;
+  width: 200px;
+  height: 200px;
+  border: 5px double red;
+  vertical-align: middle;
+  background-color: #CCFFCC;
+}
+
+#play_again {
+  font-size: 20px;
+  color: black;
+}
 
