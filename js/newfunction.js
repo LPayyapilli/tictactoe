@@ -1,4 +1,5 @@
 // Alternating turns function
+var gameRef, gameAuth;
 var player = 0;
 var players = ["X", "O"];
 var board = ["", "", "", "", "", "", "", "", ""];
@@ -15,7 +16,7 @@ var turn = function() {
 };
 
 // Check for whether someone won the game/
-var checkForWin= function() {
+var checkForWin = function() {
 
 // Loop through all possible winning combinations
 for(var foo = 0; foo<8; foo++) {
@@ -24,9 +25,11 @@ for(var foo = 0; foo<8; foo++) {
   if (p === "XXX") {
     winner = true;
     Xcount += 1;
+    winRef.set({xCount: Xcount, oCount: Ocount});
     $('#rocket').text('Rocket: ' + Xcount);
 
-// alert("Rocket won" + " with " + Xcount + " wins");
+
+    alert("Rocket won" + " with " + Xcount + " wins");
 // X Won!
 return true;
 
@@ -34,8 +37,9 @@ return true;
   winner = true;
   Ocount +=1;
   $('#road').text('Road: ' + Ocount);
+  winRef.set({oCount: Ocount, xCount: Xcount});
 
-// alert("Road won" + " with " + Ocount + " wins");
+  alert("Road won" + " with " + Ocount + " wins");
 // O Won!
 return true;
 
@@ -43,7 +47,7 @@ return true;
 } else if(turnCount === 9 && p !== "OOO" && p !== "XXX"){
   winner = true;
 
-  alert("Tie game folks, Hit that reset button and game on");
+  alert("Tie game folks, Game on");
   reStartGame();
   return true;
 
@@ -63,3 +67,76 @@ var reStartGame = function() {
 
   }
 };
+
+var gameRef = new Firebase('https://tictactoeyo.firebaseio.com/tictactoeyo/');
+var winRef = new Firebase('https://tictactoeyo.firebaseio.com/wins/');
+
+var otherPlayer = function(player) {
+  return player === 0 ? 1 : 0;
+};
+
+// Firebase to link clients via turn function
+// Firebase to link clients via self lockout function
+// Firebase for board state
+//On load, set up event handling on the object at "gameRef"
+gameRef.on('value', function(snapshot) {
+  var message = snapshot.val();
+  var disable = false;
+
+  if (message) {
+
+    if (message.board) {
+      message.board.forEach(function(player, index){
+        if (player !== board[index]) {
+          var move = "#" + index;
+          $(move).html(player === "O" ? $('#image2').html() : $('#image1').html());
+          $(move).show();
+        };
+      });
+      board = message.board;
+
+    }
+
+    if (gameAuth.uid === message.waitingPlayer) {
+      player = otherPlayer(message.player);
+      disable = true;
+    } else {
+      player = message.player;
+    }
+  }
+  if (disable) {
+    $('#board td').unbind();
+  } else {
+    $("#board td").click(function(e) {
+      if(!winner) {
+        var move = "#" + e.target.id;
+        if(!$(move).html()) {
+          $("#board td").unbind();
+
+          $(move).html(player===0 ? $('#image2').html() : $('#image1').html());
+          $(move).show();
+          turn();
+          board[e.target.id] = players[player];
+          gameRef.set({player: player, waitingPlayer: gameAuth.uid, board: board});
+
+
+          console.log(board);
+          turnCount +=1;
+          checkForWin();
+
+        }
+      }
+    });
+  }
+});
+
+winRef.on('value', function(snapshot) {
+  var message = snapshot.val();
+  if (message){
+    var message = snapshot.val();
+    Xcount = message.xCount || 0;
+    Ocount = message.oCount || 0;
+    $('#rocket').text('Rocket: ' + Xcount);
+    $('#road').text('Road: ' + Ocount);
+  };
+});

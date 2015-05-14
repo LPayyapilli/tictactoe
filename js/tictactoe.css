@@ -29,12 +29,12 @@ h1 {
   font-size: 30px;
   padding: 3px 13px 4px 13px;
   text-decoration: none;
-  background-image: url("http://i.imgur.com/lKlqTGz.jpg");
+  background-image: url("https://i.imgur.com/lKlqTGz.jpg");
 }
 body {
   text-align: center;
   align: center;
-  background-image: url("http://i.imgur.com/lKlqTGz.jpg");
+  background-image: url("https://i.imgur.com/lKlqTGz.jpg");
 }
 ::-webkit-input-placeholder {
   color: rgba(46, 204, 113,1.0);
