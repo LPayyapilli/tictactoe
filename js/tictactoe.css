@@ -1,17 +1,87 @@
 //Simple CSS
-#messagesDiv {
-  height: 600px;
-  width: 200px;
-  float: left;
-}
+
+
 table.board {
   border: 1px solid green;
   width: 100%;
+
+}
+#image1 {
+  display: none;
+}
+#image2 {
+  display: none;
+}
+
+h1 {
+
+  background-image: -webkit-linear-gradient(top, #041017, #1c2c36);
+  background-image: -moz-linear-gradient(top, #041017, #1c2c36);
+  background-image: -ms-linear-gradient(top, #041017, #1c2c36);
+  background-image: -o-linear-gradient(top, #041017, #1c2c36);
+  background-image: linear-gradient(to bottom, #041017, #1c2c36);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #091f0e;
+  font-family: Courier New;
+  color: #6ee686;
+  font-size: 30px;
+  padding: 3px 13px 4px 13px;
+  text-decoration: none;
+  background-image: url("http://i.imgur.com/lKlqTGz.jpg");
 }
 body {
   text-align: center;
   align: center;
-  background-color: #CCFFCC;
+  background-image: url("http://i.imgur.com/lKlqTGz.jpg");
+}
+::-webkit-input-placeholder {
+   color: rgba(46, 204, 113,1.0);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: rgba(46, 204, 113,1.0);
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: rgba(46, 204, 113,1.0);
+}
+
+:-ms-input-placeholder {
+   color: rgba(46, 204, 113,1.0);
+}
+
+.reset {
+  background: #041017;
+  background-image: -webkit-linear-gradient(top, #041017, #1c2c36);
+  background-image: -moz-linear-gradient(top, #041017, #1c2c36);
+  background-image: -ms-linear-gradient(top, #041017, #1c2c36);
+  background-image: -o-linear-gradient(top, #041017, #1c2c36);
+  background-image: linear-gradient(to bottom, #041017, #1c2c36);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #091f0e;
+  -webkit-box-shadow: 4px 4px 5px #06260e;
+  -moz-box-shadow: 4px 4px 5px #06260e;
+  box-shadow: 4px 4px 5px #06260e;
+  font-family: Courier New;
+  color: #6ee686;
+  font-size: 16px;
+  padding: 3px 13px 4px 13px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.reset:hover {
+  background: #7d919e;
+  background-image: -webkit-linear-gradient(top, #7d919e, #839099);
+  background-image: -moz-linear-gradient(top, #7d919e, #839099);
+  background-image: -ms-linear-gradient(top, #7d919e, #839099);
+  background-image: -o-linear-gradient(top, #7d919e, #839099);
+  background-image: linear-gradient(to bottom, #7d919e, #839099);
+  text-decoration: none;
 }
 
 td {
@@ -26,6 +96,10 @@ td {
   border: 1px solid green;
 }
 
+td:hover {
+  background-color: rgba(236, 240, 241, .3);
+}
+
 #menu {
   font-size: 20px;
   text-align: center;
@@ -36,8 +110,84 @@ td {
   background-color: #CCFFCC;
 }
 
-#play_again {
-  font-size: 20px;
-  color: black;
+.bounceInDown {
+  -webkit-animation-name: bounceInDown;
+  animation-name: bounceInDown;
+}
+
+@-webkit-keyframes bounceInLeft {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes bounceInLeft {
+  0%, 60%, 75%, 90%, 100% {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+.chat {
+  color: green;
+}
+
+#wincount {
+  font-family: Courier New;
+  color: #6ee686;
 }
 
