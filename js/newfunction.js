@@ -8,58 +8,58 @@ var turnCount = 0;
 var Xcount = 0;
 var Ocount = 0;
 // turn function
-  var turn = function() {
-    player = 1 - player;
+var turn = function() {
+  player = 1 - player;
 
-      return player;
-  };
+  return player;
+};
 
 // Check for whether someone won the game/
-  var checkForWin= function() {
+var checkForWin= function() {
 
 // Loop through all possible winning combinations
-    for(var foo = 0; foo<8; foo++) {
-        var p = board[wins[foo][0]] + board[wins[foo][1]] + board[wins[foo][2]];
+for(var foo = 0; foo<8; foo++) {
+  var p = board[wins[foo][0]] + board[wins[foo][1]] + board[wins[foo][2]];
 
-          if (p === "XXX") {
-            winner = true;
-            Xcount += 1;
-            $('#rocket').text('Rocket: ' + Xcount);
+  if (p === "XXX") {
+    winner = true;
+    Xcount += 1;
+    $('#rocket').text('Rocket: ' + Xcount);
 
-            // alert("Rocket won" + " with " + Xcount + " wins");
+// alert("Rocket won" + " with " + Xcount + " wins");
 // X Won!
-              return true;
+return true;
 
-          } else if (p === "OOO") {
-            winner = true;
-            Ocount +=1;
-            $('#road').text('Road: ' + Ocount);
+} else if (p === "OOO") {
+  winner = true;
+  Ocount +=1;
+  $('#road').text('Road: ' + Ocount);
 
-            // alert("Road won" + " with " + Ocount + " wins");
+// alert("Road won" + " with " + Ocount + " wins");
 // O Won!
-              return true;
+return true;
 
 
-          } else if(turnCount === 9 && p !== "OOO" && p !== "XXX"){
-            winner = true;
+} else if(turnCount === 9 && p !== "OOO" && p !== "XXX"){
+  winner = true;
 
-            alert("Tie game folks, Hit that reset button and game on");
-            reStartGame();
-              return true;
+  alert("Tie game folks, Hit that reset button and game on");
+  reStartGame();
+  return true;
 
-          }
-      }
-  };
+}
+}
+};
 
 
-  var reStartGame = function() {
-    player = 0;
-    winner = false;
-    turnCount = 0;
-    board = ["", "", "", "", "", "", "", "", ""];
-      for (var i = 0; i<board.length; i++) {
+var reStartGame = function() {
+  player = 0;
+  winner = false;
+  turnCount = 0;
+  board = ["", "", "", "", "", "", "", "", ""];
+  for (var i = 0; i<board.length; i++) {
 
-          $('#' + [i]).html('');
+    $('#' + [i]).html('');
 
-          }
-  };
+  }
+};

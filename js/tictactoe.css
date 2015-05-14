@@ -37,19 +37,19 @@ body {
   background-image: url("http://i.imgur.com/lKlqTGz.jpg");
 }
 ::-webkit-input-placeholder {
-   color: rgba(46, 204, 113,1.0);
+  color: rgba(46, 204, 113,1.0);
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: rgba(46, 204, 113,1.0);
+  color: rgba(46, 204, 113,1.0);
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: rgba(46, 204, 113,1.0);
+  color: rgba(46, 204, 113,1.0);
 }
 
 :-ms-input-placeholder {
-   color: rgba(46, 204, 113,1.0);
+  color: rgba(46, 204, 113,1.0);
 }
 
 .reset {
@@ -189,5 +189,6 @@ td:hover {
 #wincount {
   font-family: Courier New;
   color: #6ee686;
+  font-size: large;
 }
 
