@@ -1,4 +1,4 @@
-// Alternating turns function
+//Setting global variables
 var gameRef, gameAuth;
 var player = 0;
 var players = ["X", "O"];
@@ -8,6 +8,7 @@ var wins = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [6,4,
 var turnCount = 0;
 var Xcount = 0;
 var Ocount = 0;
+
 // turn function
 var turn = function() {
   player = 1 - player;
@@ -21,7 +22,7 @@ var checkForWin = function() {
 // Loop through all possible winning combinations
 for(var foo = 0; foo<8; foo++) {
   var p = board[wins[foo][0]] + board[wins[foo][1]] + board[wins[foo][2]];
-
+//if you find 3 X's
   if (p === "XXX") {
     winner = true;
     Xcount += 1;
@@ -29,21 +30,21 @@ for(var foo = 0; foo<8; foo++) {
     $('#rocket').text('Rocket: ' + Xcount);
 
 
-    alert("Rocket won" + " with " + Xcount + " wins");
+    //alert("Rocket won" + " with " + Xcount + " wins");
 // X Won!
 return true;
-
+// if you find 3 O's
 } else if (p === "OOO") {
   winner = true;
   Ocount +=1;
   $('#road').text('Road: ' + Ocount);
   winRef.set({oCount: Ocount, xCount: Xcount});
 
-  alert("Road won" + " with " + Ocount + " wins");
+  //alert("Road won" + " with " + Ocount + " wins");
 // O Won!
 return true;
 
-
+//if its a tie
 } else if(turnCount === 9 && p !== "OOO" && p !== "XXX"){
   winner = true;
 
@@ -55,7 +56,7 @@ return true;
 }
 };
 
-
+//reset the board to default
 var reStartGame = function() {
   player = 0;
   winner = false;
@@ -67,18 +68,16 @@ var reStartGame = function() {
 
   }
 };
-
+// create new firebase object called gameRef and winRef
 var gameRef = new Firebase('https://tictactoeyo.firebaseio.com/tictactoeyo/');
 var winRef = new Firebase('https://tictactoeyo.firebaseio.com/wins/');
 
+//function to decide who is "otherPlayer"
 var otherPlayer = function(player) {
   return player === 0 ? 1 : 0;
 };
 
-// Firebase to link clients via turn function
-// Firebase to link clients via self lockout function
-// Firebase for board state
-//On load, set up event handling on the object at "gameRef"
+//setting the values for firebase publisher gameRef
 gameRef.on('value', function(snapshot) {
   var message = snapshot.val();
   var disable = false;
@@ -129,7 +128,7 @@ gameRef.on('value', function(snapshot) {
     });
   }
 });
-
+//setting the value of the firebase publisher win count
 winRef.on('value', function(snapshot) {
   var message = snapshot.val();
   if (message){
