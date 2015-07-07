@@ -63,7 +63,6 @@ var reStartGame = function() {
   turnCount = 0;
   board = ["", "", "", "", "", "", "", "", ""];
   for (var i = 0; i<board.length; i++) {
-
     $('#' + [i]).html('');
 
   }
@@ -132,7 +131,6 @@ gameRef.on('value', function(snapshot) {
 winRef.on('value', function(snapshot) {
   var message = snapshot.val();
   if (message){
-    var message = snapshot.val();
     Xcount = message.xCount || 0;
     Ocount = message.oCount || 0;
     $('#rocket').text('Rocket: ' + Xcount);

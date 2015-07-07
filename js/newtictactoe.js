@@ -1,7 +1,7 @@
 $(document).ready(function() {
-//if the game Authorization isnt set to the game Reference
+//if the game Authorization isnt equal to the authorization id for gameRef firebase object
   if (!(gameAuth = gameRef.getAuth())) {
-// set it anonymously
+// set it anonymously unless its an error
     gameRef.authAnonymously(function(error, authData) {
       if (error) {
         console.log("Login Failed!", error);
@@ -22,11 +22,8 @@ $(document).ready(function() {
         $(move).show();
         turn();
         board[e.target.id] = players[player];
-        //set game reference object with player, waitingPlayer, and board properties
+        //set game reference firebase object with player, waitingPlayer, and board properties with values
         gameRef.set({player: player, waitingPlayer: gameAuth.uid, board: board});
-
-
-        console.log(board);
         turnCount +=1;
         checkForWin();
 
